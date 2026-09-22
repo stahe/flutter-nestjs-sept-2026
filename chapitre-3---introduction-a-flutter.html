@@ -1,0 +1,795 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Une application client / serveur [Flutter] / [NestJS]">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/flutter-nestjs-sept-2026/chapitre-3---introduction-a-flutter.html">
+      
+      
+        <link rel="prev" href="chapitre-2---installation-du-serveur-nestjs.html">
+      
+      
+        <link rel="next" href="chapitre-4---le-client-flutter-de-lapplication-rdvmedecins.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>4. Chapitre 3 - Introduction à Flutter - Une application client / serveur [Flutter] / [NestJS]</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Une application client / serveur [Flutter] / [NestJS]";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4-chapitre-3-introduction-a-flutter" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Une application client / serveur [Flutter] / [NestJS]" class="md-header__button md-logo" aria-label="Une application client / serveur [Flutter] / [NestJS]" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Une application client / serveur [Flutter] / [NestJS]
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. Chapitre 3 - Introduction à Flutter
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/flutter-nestjs-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Une application client / serveur [Flutter] / [NestJS]" class="md-nav__button md-logo" aria-label="Une application client / serveur [Flutter] / [NestJS]" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Une application client / serveur [Flutter] / [NestJS]
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/flutter-nestjs-sept-2026" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="chapitre-1---mise-en-place-de-lenvironnement-de-travail.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Chapitre 1 - Mise en place de l’environnement de travail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="chapitre-2---installation-du-serveur-nestjs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Chapitre 2 - Installation du serveur [NestJS]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Chapitre 3 - Introduction à Flutter
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="chapitre-3---introduction-a-flutter.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Chapitre 3 - Introduction à Flutter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-ce-que-flutter-nest-pas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Ce que Flutter N&#x27;EST PAS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-le-modele-de-developpement-de-flutter-tout-est-un-widget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Le modèle de développement de Flutter : tout est un widget
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44-statelesswidget-et-statefulwidget-la-ou-vuejs-na-besoin-daucune-distinction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4. StatelessWidget et StatefulWidget : là où Vue.js n&#x27;a besoin d&#x27;aucune distinction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#45-partager-un-etat-entre-widgets-provider-lequivalent-de-provideinject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5. Partager un état entre widgets : provider, l&#x27;équivalent de provide/inject
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#46-pas-de-langage-de-template-separe-le-rendu-conditionnel-et-les-listes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6. Pas de langage de template séparé : le rendu conditionnel et les listes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#47-dart-un-cousin-proche-de-typescript-pas-de-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7. Dart : un cousin proche de TypeScript, pas de JavaScript
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#48-un-premier-exemple-minimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8. Un premier exemple minimal
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#49-recapitulatif-correspondances-angular-react-vuejs-flutter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.9. Récapitulatif : correspondances Angular -&gt; React -&gt; Vue.js -&gt; Flutter
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="chapitre-4---le-client-flutter-de-lapplication-rdvmedecins.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Chapitre 4 - Le client Flutter de l'application RdvMedecins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="chapitre-5---porter-lapplication-flutter-vers-mobile-bureau-et-web.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Chapitre 5 - Porter l'application Flutter vers mobile, bureau et web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="chapitre-6---conclusion-et-etapes-suivantes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Chapitre 6 - Conclusion et étapes suivantes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="4-chapitre-3-introduction-a-flutter">4. <span style="color: #2e74b5">Chapitre 3 - Introduction à Flutter</span></h1>
+<h2 id="41-sources">4.1. <span style="color: #2e74b5">Sources</span></h2>
+<p>Documentation officielle : https://docs.flutter.dev - en particulier les pages « What is Flutter? », « Introduction to widgets » et « State management ». Langage <em><mark style="background-color: #fff5ce">[Dart]</mark></em> : https://dart.dev/language</p>
+<h2 id="42-ce-que-flutter-nest-pas">4.2. <span style="color: #2e74b5">Ce que Flutter N&#x27;EST PAS</span></h2>
+<p>C&#x27;est le point de départ le plus important de ce chapitre, tant il diffère des trois variantes précédentes de ce cours. <em><mark style="background-color: #fff5ce">[Angular]</mark></em>, <em><mark style="background-color: #fff5ce">[React]</mark></em> et <em><mark style="background-color: #fff5ce">[Vue.js]</mark></em> produisent tous les trois du <strong><em><mark style="background-color: #fff5ce">[JavaScript]</mark></em></strong>/<strong><em><mark style="background-color: #fff5ce">[TypeScript]</mark></em></strong> COMPILÉ, exécuté par le moteur <em><mark style="background-color: #fff5ce">[JavaScript]</mark></em> déjà présent dans un navigateur - c&#x27;est ce moteur qui fait tout le travail d&#x27;affichage, via le <em><mark style="background-color: #fff5ce">[DOM]</mark></em> et le <em><mark style="background-color: #fff5ce">[CSS]</mark></em>. Un outil comme <em><mark style="background-color: #fff5ce">[Cordova]</mark></em>/<em><mark style="background-color: #fff5ce">[Capacitor]</mark></em> (non utilisé dans ce cours) permet bien d&#x27;empaqueter un tel client web dans une coquille mobile, mais ce client continue, alors, de s&#x27;exécuter dans un navigateur embarqué (une <strong><em><mark style="background-color: #fff5ce">[WebView]</mark></em></strong>) - jamais nativement.</p>
+<p><em><mark style="background-color: #fff5ce">[Flutter]</mark></em> ne fait RIEN de tout cela. Le code <em><mark style="background-color: #fff5ce">[Dart]</mark></em> de ce document est compilé, pour le mobile et le bureau, en code machine NATIF (compilation <strong><em><mark style="background-color: #fff5ce">[AOT]</mark></em></strong>, <em><mark style="background-color: #fff5ce">[Ahead-Of-Time]</mark></em> - la même famille de compilation qu&#x27;un programme C++ ou Rust), directement exécutable par le système d&#x27;exploitation cible, SANS interpréteur <em><mark style="background-color: #fff5ce">[JavaScript]</mark></em> ni <em><mark style="background-color: #fff5ce">[WebView]</mark></em> d&#x27;aucune sorte. <em><mark style="background-color: #fff5ce">[Flutter]</mark></em> embarque son propre moteur de rendu graphique (<strong><em><mark style="background-color: #fff5ce">[Impeller]</mark></em></strong>, qui a remplacé <strong><em><mark style="background-color: #fff5ce">[Skia]</mark></em></strong> comme moteur par défaut sur mobile) : l&#x27;application dessine chacun de ses pixels elle-même, image par image, plutôt que de déléguer l&#x27;affichage aux widgets natifs du système d&#x27;exploitation (contrairement à <em><mark style="background-color: #fff5ce">[React Native]</mark></em>, non utilisé dans ce cours, qui pilote lui les vrais composants d&#x27;interface d&#x27;<em><mark style="background-color: #fff5ce">[Android]</mark></em>/<em><mark style="background-color: #fff5ce">[iOS]</mark></em>). C&#x27;est CE choix d&#x27;architecture qui permet à <em><mark style="background-color: #fff5ce">[Flutter]</mark></em> de rendre une interface RIGOUREUSEMENT identique sur les 3 environnements ciblés par ce document - il n&#x27;y a aucun composant natif du système d&#x27;exploitation dont l&#x27;apparence pourrait varier d&#x27;une plateforme à l&#x27;autre.</p>
+<p>Sur la cible <em><mark style="background-color: #fff5ce">[web]</mark></em>, en revanche, il n&#x27;existe évidemment pas de compilation vers du code machine natif : <strong><em><mark style="background-color: #fff5ce">[flutter build web]</mark></em></strong> compile le code <em><mark style="background-color: #fff5ce">[Dart]</mark></em> vers du <strong><em><mark style="background-color: #fff5ce">[JavaScript]</mark></em></strong> (ou vers <strong><em><mark style="background-color: #fff5ce">[WebAssembly]</mark></em></strong>, une cible plus récente), exécuté par le navigateur - mais ce <em><mark style="background-color: #fff5ce">[JavaScript]</mark></em> généré ne manipule PAS le <em><mark style="background-color: #fff5ce">[DOM]</mark></em> <em><mark style="background-color: #fff5ce">[HTML]</mark></em> comme le fait <em><mark style="background-color: #fff5ce">[Vue.js]</mark></em> : il dessine directement, lui aussi, sur un unique élément <strong><em><mark style="background-color: #fff5ce">[&lt;canvas&gt;]</mark></em></strong> (ou via des éléments <em><mark style="background-color: #fff5ce">[HTML]</mark></em> générés automatiquement, selon le mode de rendu choisi), reproduisant ainsi la même apparence <em><mark style="background-color: #fff5ce">[Flutter]</mark></em> que sur mobile et bureau plutôt que de s&#x27;appuyer sur des éléments <em><mark style="background-color: #fff5ce">[HTML]</mark></em> stylés en <em><mark style="background-color: #fff5ce">[CSS]</mark></em>.</p>
+<h2 id="43-le-modele-de-developpement-de-flutter-tout-est-un-widget">4.3. <span style="color: #2e74b5">Le modèle de développement de Flutter : tout est un widget</span></h2>
+<p><em><mark style="background-color: #fff5ce">[Angular]</mark></em>, <em><mark style="background-color: #fff5ce">[React]</mark></em> et <em><mark style="background-color: #fff5ce">[Vue.js]</mark></em> distinguent tous les trois la LOGIQUE d&#x27;un composant (<em><mark style="background-color: #fff5ce">[TypeScript]</mark></em>) de sa PRÉSENTATION (un template <em><mark style="background-color: #fff5ce">[HTML]</mark></em>, séparé ou intégré selon le framework - cf. le chapitre 4 du document <em><mark style="background-color: #fff5ce">[Vue.js]</mark></em> de ce cours, « Les composants : fichiers [.vue] et le [Composition API] »). <em><mark style="background-color: #fff5ce">[Flutter]</mark></em> efface complètement cette distinction : TOUT, dans une interface <em><mark style="background-color: #fff5ce">[Flutter]</mark></em>, est un <strong><em><mark style="background-color: #fff5ce">[Widget]</mark></em></strong> - un bouton, un texte, une marge, un alignement, une couleur de fond sont chacun un widget, et une interface complète n&#x27;est jamais qu&#x27;un ARBRE de widgets imbriqués les uns dans les autres, décrit par du code <em><mark style="background-color: #fff5ce">[Dart]</mark></em> ordinaire (la méthode <strong><em><mark style="background-color: #fff5ce">[build(BuildContext context)]</mark></em></strong>) plutôt que par un langage de template séparé - en cela, <em><mark style="background-color: #fff5ce">[Flutter]</mark></em> pousse plus loin encore le choix déjà fait par <em><mark style="background-color: #fff5ce">[React]</mark></em> (<em><mark style="background-color: #fff5ce">[JSX]</mark></em>, du <em><mark style="background-color: #fff5ce">[JavaScript]</mark></em> qui décrit de l&#x27;interface) : là où <em><mark style="background-color: #fff5ce">[JSX]</mark></em> reste un langage à balises MÊLÉ au <em><mark style="background-color: #fff5ce">[JavaScript]</mark></em>, <strong><em><mark style="background-color: #fff5ce">[build(...)]</mark></em></strong> ne renvoie qu&#x27;une simple EXPRESSION <em><mark style="background-color: #fff5ce">[Dart]</mark></em> - des appels de constructeurs imbriqués (<strong><em><mark style="background-color: #fff5ce">[Scaffold(appBar: ..., body: Column(children: [...]))]</mark></em></strong>), sans aucune syntaxe supplémentaire à apprendre.</p>
+<h2 id="44-statelesswidget-et-statefulwidget-la-ou-vuejs-na-besoin-daucune-distinction">4.4. <span style="color: #2e74b5">StatelessWidget et StatefulWidget : là où Vue.js n&#x27;a besoin d&#x27;aucune distinction</span></h2>
+<p><em><mark style="background-color: #fff5ce">[Vue.js]</mark></em> (comme <em><mark style="background-color: #fff5ce">[React]</mark></em> et <em><mark style="background-color: #fff5ce">[Angular]</mark></em> avant lui dans ce cours) ne fait aucune différence structurelle entre un composant qui possède un état mutable et un composant qui n&#x27;en a pas : <strong><em><mark style="background-color: #fff5ce">[ref(...)]</mark></em></strong> peut être appelé, ou non, dans n&#x27;importe quel <strong><em><mark style="background-color: #fff5ce">[&lt;script setup&gt;]</mark></em></strong>, sans rien changer à la déclaration du composant lui-même. <em><mark style="background-color: #fff5ce">[Flutter]</mark></em> IMPOSE cette distinction dès la déclaration de la classe : un <strong><em><mark style="background-color: #fff5ce">[StatelessWidget]</mark></em></strong> (rien ne change jamais après sa construction - cf. <strong><em><mark style="background-color: #fff5ce">[AgendaView]</mark></em></strong> et <strong><em><mark style="background-color: #fff5ce">[LoginPage]</mark></em></strong> au chapitre 4) redessine sa méthode <strong><em><mark style="background-color: #fff5ce">[build(...)]</mark></em></strong> UNIQUEMENT quand ses paramètres changent ; un <strong><em><mark style="background-color: #fff5ce">[StatefulWidget]</mark></em></strong> se double d&#x27;une classe <strong><em><mark style="background-color: #fff5ce">[State&lt;T&gt;]</mark></em></strong> séparée (cf. <strong><em><mark style="background-color: #fff5ce">[_LoginFormState]</mark></em></strong>, <strong><em><mark style="background-color: #fff5ce">[_AppRootState]</mark></em></strong>..., chapitre 4), qui porte l&#x27;état mutable et la méthode <strong><em><mark style="background-color: #fff5ce">[setState(() { ... })]</mark></em></strong> - l&#x27;appel EXPLICITE qui déclenche un nouveau rendu, là où <strong><em><mark style="background-color: #fff5ce">[reactive(...)]</mark></em></strong> côté <em><mark style="background-color: #fff5ce">[Vue.js]</mark></em> détecte automatiquement chaque écriture de propriété. Cette séparation en deux classes (Widget/State) est la conséquence directe d&#x27;un choix de conception assumé de <em><mark style="background-color: #fff5ce">[Flutter]</mark></em> : un objet <strong><em><mark style="background-color: #fff5ce">[Widget]</mark></em></strong> est IMMUABLE (reconstruit à chaque rendu, comme un simple objet de configuration), tandis que son <strong><em><mark style="background-color: #fff5ce">[State]</mark></em></strong> associé, lui, SURVIT d&#x27;un rendu à l&#x27;autre.</p>
+<h2 id="45-partager-un-etat-entre-widgets-provider-lequivalent-de-provideinject">4.5. <span style="color: #2e74b5">Partager un état entre widgets : provider, l&#x27;équivalent de provide/inject</span></h2>
+<p><em><mark style="background-color: #fff5ce">[Vue.js]</mark></em> partage un état entre composants distants par le couple <strong><em><mark style="background-color: #fff5ce">[provide]</mark></em></strong>/<strong><em><mark style="background-color: #fff5ce">[inject]</mark></em></strong>  ; <em><mark style="background-color: #fff5ce">[React]</mark></em> utilise un <strong><em><mark style="background-color: #fff5ce">[Context]</mark></em></strong> ; <em><mark style="background-color: #fff5ce">[Angular]</mark></em> un service injectable en singleton. <em><mark style="background-color: #fff5ce">[Flutter]</mark></em> n&#x27;a AUCUN de ces mécanismes intégré au framework lui-même : le package tiers <strong><em><mark style="background-color: #fff5ce">[provider]</mark></em></strong> (cf. <strong><em><mark style="background-color: #fff5ce">[pubspec.yaml]</mark></em></strong>, chapitre 4), quasi incontournable dans l&#x27;écosystème <em><mark style="background-color: #fff5ce">[Flutter]</mark></em>, en tient lieu. Son principe : une classe <strong><em><mark style="background-color: #fff5ce">[ChangeNotifier]</mark></em></strong> (une classe <em><mark style="background-color: #fff5ce">[Dart]</mark></em> ordinaire, qui sait prévenir ses auditeurs d&#x27;un changement via <strong><em><mark style="background-color: #fff5ce">[notifyListeners()]</mark></em></strong>) est rendue disponible à tout un sous-arbre de widgets par un <strong><em><mark style="background-color: #fff5ce">[ChangeNotifierProvider]</mark></em></strong> posé à sa racine (cf. <strong><em><mark style="background-color: #fff5ce">[MultiProvider]</mark></em></strong> dans <strong><em><mark style="background-color: #fff5ce">[lib/main.dart]</mark></em></strong>, l&#x27;équivalent des appels <strong><em><mark style="background-color: #fff5ce">[app.provide(clé, valeur)]</mark></em></strong> côté <em><mark style="background-color: #fff5ce">[Vue.js]</mark></em>) ; n&#x27;importe quel widget descendant le relit ensuite avec <strong><em><mark style="background-color: #fff5ce">[context.watch&lt;MonService&gt;()]</mark></em></strong> (s&#x27;abonne aux changements futurs - l&#x27;équivalent de <strong><em><mark style="background-color: #fff5ce">[useXxx()]</mark></em></strong> côté <em><mark style="background-color: #fff5ce">[Vue.js]</mark></em>) ou <strong><em><mark style="background-color: #fff5ce">[context.read&lt;MonService&gt;()]</mark></em></strong> (lecture ponctuelle, sans réabonnement - une distinction que <em><mark style="background-color: #fff5ce">[Vue.js]</mark></em> n&#x27;a pas besoin de faire).</p>
+<p>Différence essentielle avec <strong><em><mark style="background-color: #fff5ce">[reactive(...)]</mark></em></strong> : un <strong><em><mark style="background-color: #fff5ce">[ChangeNotifier]</mark></em></strong> ne détecte RIEN automatiquement. <strong><em><mark style="background-color: #fff5ce">[reactive(...)]</mark></em></strong> enveloppe un objet dans un proxy <em><mark style="background-color: #fff5ce">[JavaScript]</mark></em> qui intercepte chaque LECTURE et chaque ÉCRITURE de propriété ; un <strong><em><mark style="background-color: #fff5ce">[ChangeNotifier]</mark></em></strong> <em><mark style="background-color: #fff5ce">[Dart]</mark></em> est une classe ordinaire, et c&#x27;est au développeur d&#x27;appeler explicitement <strong><em><mark style="background-color: #fff5ce">[notifyListeners()]</mark></em></strong> après chaque modification qui doit provoquer un nouvel affichage - plus de discipline à la main, en échange d&#x27;un mécanisme sans « magie » de proxy à comprendre.</p>
+<h2 id="46-pas-de-langage-de-template-separe-le-rendu-conditionnel-et-les-listes">4.6. <span style="color: #2e74b5">Pas de langage de template séparé : le rendu conditionnel et les listes</span></h2>
+<p><strong><em><mark style="background-color: #fff5ce">[v-if]</mark></em></strong>/<strong><em><mark style="background-color: #fff5ce">[v-else]</mark></em></strong> et <strong><em><mark style="background-color: #fff5ce">[v-for]</mark></em></strong> (<em><mark style="background-color: #fff5ce">[Vue.js]</mark></em>) - comme <strong><em><mark style="background-color: #fff5ce">[@if]</mark></em></strong>/<strong><em><mark style="background-color: #fff5ce">[@for]</mark></em></strong> côté <em><mark style="background-color: #fff5ce">[Angular]</mark></em>, ou les opérateurs <strong><em><mark style="background-color: #fff5ce">&amp;&amp;</mark></em></strong>/ternaire et <strong><em><mark style="background-color: #fff5ce">[.map(...)]</mark></em></strong> côté <em><mark style="background-color: #fff5ce">[React]</mark></em> - redeviennent, en <em><mark style="background-color: #fff5ce">[Flutter]</mark></em>, des expressions <em><mark style="background-color: #fff5ce">[Dart]</mark></em> ORDINAIRES, directement dans <strong><em><mark style="background-color: #fff5ce">[build(...)]</mark></em></strong> : un <strong><em><mark style="background-color: #fff5ce">[if]</mark></em></strong>/<strong><em><mark style="background-color: #fff5ce">[else]</mark></em></strong> <em><mark style="background-color: #fff5ce">[Dart]</mark></em> classique pour une condition, et <strong><em><mark style="background-color: #fff5ce">[.map((element) =&gt; Widget(...)).toList()]</mark></em></strong> pour une liste - la même idée que <strong><em><mark style="background-color: #fff5ce">[.map(...)]</mark></em></strong> côté <em><mark style="background-color: #fff5ce">[React]</mark></em>, puisque <em><mark style="background-color: #fff5ce">[Flutter]</mark></em>, comme <em><mark style="background-color: #fff5ce">[React]</mark></em>, ne connaît PAS de « langage de template » distinct du langage de programmation lui-même. La syntaxe <strong><em><mark style="background-color: #fff5ce">[if (condition) ...[ WidgetA, WidgetB ]]</mark></em></strong> (« collection if », utilisée par exemple dans <strong><em><mark style="background-color: #fff5ce">[lib/app.dart]</mark></em></strong>, chapitre 4) pousse même cette logique un cran plus loin que <em><mark style="background-color: #fff5ce">[React]</mark></em> : une CONDITION directement insérée à l&#x27;intérieur d&#x27;une liste littérale de widgets, sans opérateur ternaire ni fonction intermédiaire.</p>
+<h2 id="47-dart-un-cousin-proche-de-typescript-pas-de-javascript">4.7. <span style="color: #2e74b5">Dart : un cousin proche de TypeScript, pas de JavaScript</span></h2>
+<p><em><mark style="background-color: #fff5ce">[Dart]</mark></em> n&#x27;a jamais été conçu comme une alternative à <em><mark style="background-color: #fff5ce">[TypeScript]</mark></em> pour le web (contrairement à ce dernier, justement conçu comme un sur-ensemble de <em><mark style="background-color: #fff5ce">[JavaScript]</mark></em>) : c&#x27;est un langage indépendant, typé STATIQUEMENT dès l&#x27;origine (pas de mode « <em><mark style="background-color: #fff5ce">[any]</mark></em> » implicite), compilé - jamais interprété tel quel. Pour un développeur venant de <em><mark style="background-color: #fff5ce">[TypeScript]</mark></em> (comme les trois variantes précédentes de ce cours), l&#x27;essentiel se transpose presque directement : classes, interfaces (<em><mark style="background-color: #fff5ce">[Dart]</mark></em> utilise <strong><em><mark style="background-color: #fff5ce">[abstract class]</mark></em></strong> ou de simples classes implémentées, plutôt qu&#x27;un mot-clé <strong><em><mark style="background-color: #fff5ce">[interface]</mark></em></strong> séparé), génériques (<strong><em><mark style="background-color: #fff5ce">[Reponse&lt;T&gt;]</mark></em></strong>, cf. chapitre 4), <strong><em><mark style="background-color: #fff5ce">[async]</mark></em></strong>/<strong><em><mark style="background-color: #fff5ce">[await]</mark></em></strong> sur des <strong><em><mark style="background-color: #fff5ce">[Future&lt;T&gt;]</mark></em></strong> (l&#x27;équivalent EXACT des <strong><em><mark style="background-color: #fff5ce">[Promise&lt;T&gt;]</mark></em></strong> <em><mark style="background-color: #fff5ce">[TypeScript]</mark></em>), et une vérification de nullabilité intégrée au système de types (<strong><em><mark style="background-color: #fff5ce">[String?]</mark></em></strong> plutôt qu&#x27;une chaîne toujours présente - l&#x27;équivalent du mode <strong><em><mark style="background-color: #fff5ce">[strict]</mark></em></strong> de <em><mark style="background-color: #fff5ce">[TypeScript]</mark></em>, mais imposé par le langage lui-même plutôt que par une option de compilateur).</p>
+<p>Une différence notable, rencontrée dans chaque fichier du chapitre suivant qui décode du JSON (<strong><em><mark style="background-color: #fff5ce">[core/models/rdv_models.dart]</mark></em></strong>) : <em><mark style="background-color: #fff5ce">[TypeScript]</mark></em> efface ses types à la compilation - une <strong><em><mark style="background-color: #fff5ce">[interface]</mark></em></strong> n&#x27;est vérifiée qu&#x27;à la compilation, un objet JSON décodé est ensuite utilisé TEL QUEL à l&#x27;exécution (<strong><em><mark style="background-color: #fff5ce">[JSON.parse(...) as Reponse&lt;T&gt;]</mark></em></strong>, une simple promesse faite au compilateur). <em><mark style="background-color: #fff5ce">[Dart]</mark></em>, lui, GARDE ses types à l&#x27;exécution : <strong><em><mark style="background-color: #fff5ce">[jsonDecode(...)]</mark></em></strong> renvoie toujours des types dynamiques (<strong><em><mark style="background-color: #fff5ce">[Map&lt;String, dynamic&gt;]</mark></em></strong>), qu&#x27;il faut explicitement convertir en instances de classes via un constructeur <strong><em><mark style="background-color: #fff5ce">[fromJson(...)]</mark></em></strong> écrit à la main - plus verbeux une fois, mais une clé manquante ou d&#x27;un type inattendu lève alors une exception immédiate et claire, plutôt que de se propager silencieusement.</p>
+<h2 id="48-un-premier-exemple-minimal">4.8. <span style="color: #2e74b5">Un premier exemple minimal</span></h2>
+<p>Voici la plus petite application <em><mark style="background-color: #fff5ce">[Flutter]</mark></em> qui affiche quelque chose à l&#x27;écran - à comparer avec <strong><em><mark style="background-color: #fff5ce">[lib/main.dart]</mark></em></strong>/<strong><em><mark style="background-color: #fff5ce">[lib/app.dart]</mark></em></strong> du chapitre 4, nettement plus riches, mais bâtis sur EXACTEMENT les mêmes briques (<strong><em><mark style="background-color: #fff5ce">[runApp(...)]</mark></em></strong>, <strong><em><mark style="background-color: #fff5ce">[MaterialApp]</mark></em></strong>, un widget racine).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="s1">'package:flutter/material.dart'</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">  </span><span class="n">runApp</span><span class="p">(</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">MaterialApp</span><span class="p">(</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">      </span><span class="nl">home:</span><span class="w"> </span><span class="n">Scaffold</span><span class="p">(</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">        </span><span class="nl">body:</span><span class="w"> </span><span class="n">Center</span><span class="p">(</span><span class="nl">child:</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">'Bonjour, RdvMedecins !'</span><span class="p">)),</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">      </span><span class="p">),</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">    </span><span class="p">),</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">  </span><span class="p">);</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Commentons ce code :</p>
+<ul>
+  <li>ligne 1 : <i><b><mark style="background-color: #fff5ce">[import &#x27;package:flutter/material.dart&#x27;;]</mark></b></i> — l&#x27;équivalent d&#x27;un <i><b><mark style="background-color: #fff5ce">[import { ... } from &#x27;vue&#x27;]</mark></b></i> : <i><b><mark style="background-color: #fff5ce">[material.dart]</mark></b></i> regroupe tous les widgets « Material Design » (<i><mark style="background-color: #fff5ce">[Google]</mark></i>) utilisés dans ce document - boutons, champs de texte, barres d&#x27;application... <i><mark style="background-color: #fff5ce">[Flutter]</mark></i> propose aussi un jeu de widgets <i><b><mark style="background-color: #fff5ce">[Cupertino]</mark></b></i> (apparence <i><mark style="background-color: #fff5ce">[iOS]</mark></i>), non utilisé dans ce cours, pour qui préfère cette apparence sur mobile <i><mark style="background-color: #fff5ce">[Apple]</mark></i>.
+  </li>
+  <li>ligne 3 : <i><b><mark style="background-color: #fff5ce">[void main() {]</mark></b></i> — le point d&#x27;entrée d&#x27;un programme <i><mark style="background-color: #fff5ce">[Dart]</mark></i>, EXACTEMENT comme celui d&#x27;un programme <i><mark style="background-color: #fff5ce">[C]</mark></i>/<i><mark style="background-color: #fff5ce">[Java]</mark></i> - <i><mark style="background-color: #fff5ce">[Flutter]</mark></i> n&#x27;a rien d&#x27;équivalent au <i><mark style="background-color: #fff5ce">[HTML]</mark></i> d&#x27;une page web dans lequel un script <i><mark style="background-color: #fff5ce">[main.ts]</mark></i> viendrait ensuite se greffer : l&#x27;application démarre directement ICI.
+  </li>
+  <li>ligne 4 : <i><b><mark style="background-color: #fff5ce">[runApp(...)]</mark></b></i> — démarre le moteur de rendu <i><mark style="background-color: #fff5ce">[Flutter]</mark></i> et lui donne le widget racine à afficher - l&#x27;équivalent de <i><b><mark style="background-color: #fff5ce">[createApp(App).mount(&#x27;#app&#x27;)]</mark></b></i> côté <i><mark style="background-color: #fff5ce">[Vue.js]</mark></i> (<i><b><mark style="background-color: #fff5ce">[src/main.ts]</mark></b></i>), en un seul appel plutôt que deux.
+  </li>
+  <li>lignes 5-9 : <i><b><mark style="background-color: #fff5ce">[MaterialApp(home: Scaffold(body: Center(...)))]</mark></b></i> — un ARBRE de widgets imbriqués, chacun avec une responsabilité précise : <i><b><mark style="background-color: #fff5ce">[MaterialApp]</mark></b></i> configure le thème et la navigation ; <i><b><mark style="background-color: #fff5ce">[Scaffold]</mark></b></i> fournit la structure standard d&#x27;un écran (zone pour une barre d&#x27;application, zone de contenu...) ; <i><b><mark style="background-color: #fff5ce">[Center]</mark></b></i> centre son enfant ; <i><b><mark style="background-color: #fff5ce">[Text]</mark></b></i> affiche une chaîne de caractères. Aucun de ces quatre widgets n&#x27;est un cas particulier du langage : ce sont de simples CLASSES <i><mark style="background-color: #fff5ce">[Dart]</mark></i>, comme celles que ce cours écrira lui-même au chapitre suivant.
+  </li>
+</ul>
+
+<h2 id="49-recapitulatif-correspondances-angular-react-vuejs-flutter">4.9. <span style="color: #2e74b5">Récapitulatif : correspondances Angular -&gt; React -&gt; Vue.js -&gt; Flutter</span></h2>
+<p>Voir aussi le <strong><em><mark style="background-color: #fff5ce">[README.md]</mark></em></strong> livré avec le code de ce chapitre pour la version complète.</p>
+<ul>
+  <li>composants <i><mark style="background-color: #fff5ce">[Angular]</mark></i>/fichiers <i><mark style="background-color: #fff5ce">[.vue]</mark></i>/fichiers <i><mark style="background-color: #fff5ce">[.tsx]</mark></i> → <i><mark style="background-color: #fff5ce">[Widgets]</mark></i> <i><mark style="background-color: #fff5ce">[Dart]</mark></i> (<i><b><mark style="background-color: #fff5ce">[StatelessWidget]</mark></b></i>/<i><b><mark style="background-color: #fff5ce">[StatefulWidget]</mark></b></i>)
+  </li>
+  <li><i><mark style="background-color: #fff5ce">[signal()]</mark></i>/<i><b><mark style="background-color: #fff5ce">[ref()]</mark></b></i>/<i><b><mark style="background-color: #fff5ce">[useState()]</mark></b></i> → champs mutables + <i><b><mark style="background-color: #fff5ce">[setState(...)]</mark></b></i> (état local), <i><b><mark style="background-color: #fff5ce">[ChangeNotifier]</mark></b></i> (état partagé)
+  </li>
+  <li><i><mark style="background-color: #fff5ce">[input()]</mark></i>/<i><mark style="background-color: #fff5ce">[output()]</mark></i>, <i><b><mark style="background-color: #fff5ce">[defineProps]</mark></b></i>/<i><b><mark style="background-color: #fff5ce">[defineEmits]</mark></b></i>, props fonctions → paramètres du constructeur (entrées), fonctions passées en paramètre (sorties)
+  </li>
+  <li>services injectables/composables + <i><mark style="background-color: #fff5ce">[provide]</mark></i>/<i><mark style="background-color: #fff5ce">[inject]</mark></i>/<i><mark style="background-color: #fff5ce">[Context]</mark></i> → classes de service + package <i><b><mark style="background-color: #fff5ce">[provider]</mark></b></i>
+  </li>
+  <li>template séparé <i><mark style="background-color: #fff5ce">[Angular]</mark></i>, <i><b><mark style="background-color: #fff5ce">[&lt;template&gt;]</mark></b></i> <i><mark style="background-color: #fff5ce">[Vue.js]</mark></i>, <i><mark style="background-color: #fff5ce">[JSX]</mark></i> <i><mark style="background-color: #fff5ce">[React]</mark></i> → méthode <i><b><mark style="background-color: #fff5ce">[build(BuildContext)]</mark></b></i> (Dart pur)
+  </li>
+  <li><i><mark style="background-color: #fff5ce">[HttpClient]</mark></i>/<i><b><mark style="background-color: #fff5ce">[fetch]</mark></b></i> → package <i><b><mark style="background-color: #fff5ce">[http]</mark></b></i>
+  </li>
+  <li><i><mark style="background-color: #fff5ce">[localStorage]</mark></i> → <i><b><mark style="background-color: #fff5ce">[shared_preferences]</mark></b></i>
+  </li>
+  <li>aucun routeur (application à un seul écran, dans les 5 variantes de ce cours)
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Ce cours-tutoriel rédigé par l'IA <strong>Claude</strong> d'Anthropic et révisé par <strong>Serge Tahé</strong> est mis à la disposition du public selon les termes de la
+        <em>Licence Creative Commons Attribution – Pas d'utilisation commerciale –
+        Partage dans les mêmes conditions 3.0 non modifiée</em>.
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

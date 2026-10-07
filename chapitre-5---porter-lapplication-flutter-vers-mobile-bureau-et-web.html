@@ -669,61 +669,72 @@
 
 <h1 id="6-chapitre-5-porter-lapplication-flutter-vers-mobile-bureau-et-web">6. <span style="color: #2e74b5">Chapitre 5 - Porter l&#x27;application Flutter vers mobile, bureau et web</span></h1>
 <h2 id="61-un-seul-code-source-plusieurs-cibles-de-compilation">6.1. <span style="color: #2e74b5">Un seul code source, plusieurs cibles de compilation</span></h2>
-<p>C&#x27;est le cœur de ce chapitre, et la raison d&#x27;être de cette variante du cours : AUCUNE ligne du chapitre 4 (<strong><em><mark style="background-color: #fff5ce">[lib/]</mark></em></strong>, <strong><em><mark style="background-color: #fff5ce">[pubspec.yaml]</mark></em></strong>, <strong><em><mark style="background-color: #fff5ce">[assets/]</mark></em></strong>) ne change, quelle que soit la cible retenue. « Porter » l&#x27;application ne consiste, ici, qu&#x27;à choisir une COMMANDE DE COMPILATION différente (<strong><em><mark style="background-color: #fff5ce">[flutter run -d &lt;cible&gt;]</mark></em></strong> ou <strong><em><mark style="background-color: #fff5ce">[flutter build &lt;cible&gt;]</mark></em></strong>) - jamais à écrire, dupliquer ou adapter le moindre widget. C&#x27;est très différent de ce qu&#x27;un portage aurait demandé avec les outils employés dans le reste de ce cours : un client <em><mark style="background-color: #fff5ce">[Vue.js]</mark></em>/<em><mark style="background-color: #fff5ce">[React]</mark></em>/<em><mark style="background-color: #fff5ce">[Angular]</mark></em> ne s&#x27;exécute NATIVEMENT que dans un navigateur - le porter vers mobile suppose un outil TIERS (<em><mark style="background-color: #fff5ce">[Cordova]</mark></em>/<em><mark style="background-color: #fff5ce">[Capacitor]</mark></em>, non utilisés dans ce cours) qui l&#x27;empaquette dans une coquille native contenant, en réalité, un navigateur embarqué (une <strong><em><mark style="background-color: #fff5ce">[WebView]</mark></em></strong>) : le code reste inchangé, mais ce n&#x27;est TOUJOURS PAS un exécutable natif, contrairement à ce que <em><mark style="background-color: #fff5ce">[Flutter]</mark></em> produit ici pour le mobile et le bureau (cf. chapitre 3, « Ce que Flutter N&#x27;EST PAS »).</p>
-<p>Les six cibles (<em><mark style="background-color: #fff5ce">[Android]</mark></em>, <em><mark style="background-color: #fff5ce">[iOS]</mark></em>, <em><mark style="background-color: #fff5ce">[macOS]</mark></em>, <em><mark style="background-color: #fff5ce">[Windows]</mark></em>, <em><mark style="background-color: #fff5ce">[Linux]</mark></em>, <em><mark style="background-color: #fff5ce">[web]</mark></em>) sont activées PAR DÉFAUT dans tout projet créé avec <strong><em><mark style="background-color: #fff5ce">[flutter create]</mark></em></strong> depuis <em><mark style="background-color: #fff5ce">[Flutter 3]</mark></em> (cf. chapitre 1) - rien à configurer côté projet pour en ajouter une. Seuls changent, d&#x27;une cible à l&#x27;autre : les outils de compilation natifs installés sur la machine de développement (<em><mark style="background-color: #fff5ce">[Xcode]</mark></em>, <em><mark style="background-color: #fff5ce">[Visual Studio]</mark></em>, <em><mark style="background-color: #fff5ce">[GTK]</mark></em>...), la commande exacte lancée, et - pour le mobile uniquement - un détail de configuration réseau détaillé plus loin dans ce chapitre.</p>
+<p>C&#x27;est le cœur de ce chapitre, et la raison d&#x27;être de cette variante du cours : AUCUNE ligne du chapitre 4 (<strong><em>[lib/]</em></strong>, <strong><em>[pubspec.yaml]</em></strong>, <strong><em>[assets/]</em></strong>) ne change, quelle que soit la cible retenue. « Porter » l&#x27;application ne consiste, ici, qu&#x27;à choisir une COMMANDE DE COMPILATION différente (<strong><em>[flutter run -d &lt;cible&gt;]</em></strong> ou <strong><em>[flutter build &lt;cible&gt;]</em></strong>) - jamais à écrire, dupliquer ou adapter le moindre widget. C&#x27;est très différent de ce qu&#x27;un portage aurait demandé avec les outils employés dans le reste de ce cours : un client <em>[Vue.js]</em>/<em>[React]</em>/<em>[Angular]</em> ne s&#x27;exécute NATIVEMENT que dans un navigateur - le porter vers mobile suppose un outil TIERS (<em>[Cordova]</em>/<em>[Capacitor]</em>, non utilisés dans ce cours) qui l&#x27;empaquette dans une coquille native contenant, en réalité, un navigateur embarqué (une <strong><em>[WebView]</em></strong>) : le code reste inchangé, mais ce n&#x27;est TOUJOURS PAS un exécutable natif, contrairement à ce que <em>[Flutter]</em> produit ici pour le mobile et le bureau (cf. chapitre 3, « Ce que Flutter N&#x27;EST PAS »).</p>
+<p>Les six cibles (<em>[Android]</em>, <em>[iOS]</em>, <em>[macOS]</em>, <em>[Windows]</em>, <em>[Linux]</em>, <em>[web]</em>) sont activées PAR DÉFAUT dans tout projet créé avec <strong><em>[flutter create]</em></strong> depuis <em>[Flutter 3]</em> (cf. chapitre 1) - rien à configurer côté projet pour en ajouter une. Seuls changent, d&#x27;une cible à l&#x27;autre : les outils de compilation natifs installés sur la machine de développement (<em>[Xcode]</em>, <em>[Visual Studio]</em>, <em>[GTK]</em>...), la commande exacte lancée, et - pour le mobile uniquement - un détail de configuration réseau détaillé plus loin dans ce chapitre.</p>
 <h2 id="62-cible-web">6.2. <span style="color: #2e74b5">Cible web</span></h2>
-<p>La cible déjà utilisée au chapitre 2 (<strong><em><mark style="background-color: #fff5ce">[flutter run -d chrome]</mark></em></strong>). Deux commandes suffisent :</p>
+<p>La cible déjà utilisée au chapitre 2 (<strong><em>[flutter run -d chrome]</em></strong>). Deux commandes suffisent :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
-<span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>flutter run -d chrome              # développement, avec hot reload
-<a id="__codelineno-0-2" name="__codelineno-0-2"></a>flutter build web                  # build de production, dans build/web/
+<span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">flutter</span> <span class="n">run</span> <span class="n">-d</span> <span class="n">chrome</span>              <span class="c"># développement, avec hot reload</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="n">flutter</span> <span class="n">build</span> <span class="n">web</span>                  <span class="c"># build de production, dans build/web/</span>
 </code></pre></div></td></tr></table></div>
-<p><strong><em><mark style="background-color: #fff5ce">[flutter build web]</mark></em></strong> produit un dossier <strong><em><mark style="background-color: #fff5ce">[build/web/]</mark></em></strong> autonome (<strong><em><mark style="background-color: #fff5ce">[index.html]</mark></em></strong>, <em><mark style="background-color: #fff5ce">[JavaScript]</mark></em> ou <em><mark style="background-color: #fff5ce">[WebAssembly]</mark></em> compilé, ressources) - à déployer sur N&#x27;IMPORTE QUEL serveur web statique (<em><mark style="background-color: #fff5ce">[Nginx]</mark></em>, <em><mark style="background-color: #fff5ce">[Apache]</mark></em>, un simple <strong><em><mark style="background-color: #fff5ce">[npx serve]</mark></em></strong>...), exactement comme le <strong><em><mark style="background-color: #fff5ce">[dist/]</mark></em></strong> produit par <strong><em><mark style="background-color: #fff5ce">[npm run build]</mark></em></strong> côté <em><mark style="background-color: #fff5ce">[Vue.js]</mark></em>/<em><mark style="background-color: #fff5ce">[Vite]</mark></em>. Ce build reste un fichier <em><mark style="background-color: #fff5ce">[JavaScript]</mark></em> servi par un navigateur : il continue donc de dépendre d&#x27;un serveur <em><mark style="background-color: #fff5ce">[NestJS]</mark></em> JOIGNABLE depuis ce navigateur, et donc de <strong><em><mark style="background-color: #fff5ce">[app.enableCors()]</mark></em></strong> (cf. <strong><em><mark style="background-color: #fff5ce">[src/main.ts]</mark></em></strong> du serveur) - déjà actif, sans rien à changer côté serveur pour cette cible.</p>
-<p>Un point d&#x27;attention propre à cette cible : le champ « URL du serveur » de l&#x27;écran de connexion (cf. <strong><em><mark style="background-color: #fff5ce">[_ServerUrlField]</mark></em></strong> dans <strong><em><mark style="background-color: #fff5ce">[lib/app.dart]</mark></em></strong>, chapitre 4) doit alors pointer vers une adresse ATTEIGNABLE depuis le navigateur qui exécute l&#x27;application - <strong><em><mark style="background-color: #fff5ce">[http://localhost:8080]</mark></em></strong> convient tant que le serveur <em><mark style="background-color: #fff5ce">[NestJS]</mark></em> tourne sur la MÊME machine que le navigateur.</p>
+<p><strong><em>[flutter build web]</em></strong> produit un dossier <strong><em>[build/web/]</em></strong> autonome (<strong><em>[index.html]</em></strong>, <em>[JavaScript]</em> ou <em>[WebAssembly]</em> compilé, ressources) - à déployer sur N&#x27;IMPORTE QUEL serveur web statique (<em>[Nginx]</em>, <em>[Apache]</em>, un simple <strong><em>[npx serve]</em></strong>...), exactement comme le <strong><em>[dist/]</em></strong> produit par <strong><em>[npm run build]</em></strong> côté <em>[Vue.js]</em>/<em>[Vite]</em>. Ce build reste un fichier <em>[JavaScript]</em> servi par un navigateur : il continue donc de dépendre d&#x27;un serveur <em>[NestJS]</em> JOIGNABLE depuis ce navigateur, et donc de <strong><em>[app.enableCors()]</em></strong> (cf. <strong><em>[src/main.ts]</em></strong> du serveur) - déjà actif, sans rien à changer côté serveur pour cette cible.</p>
+<p>Un point d&#x27;attention propre à cette cible : le champ « URL du serveur » de l&#x27;écran de connexion (cf. <strong><em>[_ServerUrlField]</em></strong> dans <strong><em>[lib/app.dart]</em></strong>, chapitre 4) doit alors pointer vers une adresse ATTEIGNABLE depuis le navigateur qui exécute l&#x27;application - <strong><em>[http://localhost:8080]</em></strong> convient tant que le serveur <em>[NestJS]</em> tourne sur la MÊME machine que le navigateur.</p>
 <h2 id="63-cible-bureau">6.3. <span style="color: #2e74b5">Cible bureau</span></h2>
-<p>Trois systèmes d&#x27;exploitation, trois jeux d&#x27;outils natifs préalables (cf. chapitre 1), mais des commandes <strong><em><mark style="background-color: #fff5ce">[flutter]</mark></em></strong> identiques dans leur forme :</p>
+<p>Trois systèmes d&#x27;exploitation, trois jeux d&#x27;outils natifs préalables (cf. chapitre 1), mais des commandes <strong><em>[flutter]</em></strong> identiques dans leur forme :</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
 <span class="normal"><a href="#__codelineno-1-2">2</a></span>
 <span class="normal"><a href="#__codelineno-1-3">3</a></span>
 <span class="normal"><a href="#__codelineno-1-4">4</a></span>
 <span class="normal"><a href="#__codelineno-1-5">5</a></span>
 <span class="normal"><a href="#__codelineno-1-6">6</a></span>
-<span class="normal"><a href="#__codelineno-1-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>flutter run -d macos               # macOS - nécessite Xcode
-<a id="__codelineno-1-2" name="__codelineno-1-2"></a>flutter run -d windows              # Windows - nécessite Visual Studio (C++ Desktop)
-<a id="__codelineno-1-3" name="__codelineno-1-3"></a>flutter run -d linux                # Linux - nécessite les paquets de développement GTK
+<span class="normal"><a href="#__codelineno-1-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">flutter</span> <span class="n">run</span> <span class="n">-d</span> <span class="n">macos</span>               <span class="c"># macOS - nécessite Xcode</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="n">flutter</span> <span class="n">run</span> <span class="n">-d</span> <span class="n">windows</span>              <span class="c"># Windows - nécessite Visual Studio (C++ Desktop)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="n">flutter</span> <span class="n">run</span> <span class="n">-d</span> <span class="n">linux</span>                <span class="c"># Linux - nécessite les paquets de développement GTK</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4"></a>
-<a id="__codelineno-1-5" name="__codelineno-1-5"></a>flutter build macos                 # build de production
-<a id="__codelineno-1-6" name="__codelineno-1-6"></a>flutter build windows
-<a id="__codelineno-1-7" name="__codelineno-1-7"></a>flutter build linux
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="n">flutter</span> <span class="n">build</span> <span class="n">macos</span>                 <span class="c"># build de production</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="n">flutter</span> <span class="n">build</span> <span class="n">windows</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="n">flutter</span> <span class="n">build</span> <span class="n">linux</span>
 </code></pre></div></td></tr></table></div>
-<p>Chaque commande <strong><em><mark style="background-color: #fff5ce">[flutter build &lt;cible&gt;]</mark></em></strong> produit un exécutable natif AUTONOME (<strong><em><mark style="background-color: #fff5ce">[.app]</mark></em></strong> sur macOS, <strong><em><mark style="background-color: #fff5ce">[.exe]</mark></em></strong> + ses bibliothèques sur Windows, un binaire <em><mark style="background-color: #fff5ce">[ELF]</mark></em> sur Linux), dans <strong><em><mark style="background-color: #fff5ce">[build/&lt;cible&gt;/]</mark></em></strong> - un exécutable qui, contrairement au build web, ne s&#x27;exécute dans AUCUN navigateur, sur AUCUNE <em><mark style="background-color: #fff5ce">[WebView]</mark></em> : c&#x27;est du code natif tournant directement sur le système d&#x27;exploitation, avec sa propre fenêtre, sa propre barre de titre, gérées par <em><mark style="background-color: #fff5ce">[Flutter]</mark></em> lui-même.</p>
-<p>Cette cible n&#x27;a besoin d&#x27;AUCUN réglage réseau particulier : une application de bureau tourne sur la même machine que l&#x27;utilisateur et atteint <strong><em><mark style="background-color: #fff5ce">[http://localhost:8080]</mark></em></strong> exactement comme le ferait n&#x27;importe quel autre programme installé sur cette machine (le champ « URL du serveur » de l&#x27;écran de connexion permet, comme pour les autres cibles, de pointer vers un serveur distant si besoin).</p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content">PS C:\Data\st-2026\dev\flutter-nestjs-sept-2026\rdvmedecins_flutter_client&gt; <span style="background-color:#fff5ce">flutter devices</span>    </span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">Found 4 connected devices:</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">  sdk gphone16k x86 64 (mobile) • emulator-5554 • android-x64    • Android 17 (API 37) (emulator)</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">  Windows (desktop)             • <span style="background-color:#fff5ce">windows</span>       • windows-x64    • Microsoft Windows [version</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">  10.0.26200.9457]</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">  Chrome (web)                  • chrome        • web-javascript • Google Chrome 153.0.8010.48</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">  Edge (web)                    • edge          • web-javascript • Microsoft Edge 153.0.4234.48</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">Run &quot;flutter emulators&quot; to list and start any available device emulators.</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">If you expected another device to be detected, please run &quot;flutter doctor&quot; to diagnose potential issues. You</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">may also try increasing the time to wait for connected devices with the &quot;--device-timeout&quot; flag. Visit</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">https://flutter.dev/setup/ for troubleshooting tips.</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">PS C:\Data\st-2026\dev\flutter-nestjs-sept-2026\rdvmedecins_flutter_client&gt; <span style="background-color:#fff5ce">flutter run -d windows</span></span></span>
-</code></pre></div>
-
+<p>Chaque commande <strong><em>[flutter build &lt;cible&gt;]</em></strong> produit un exécutable natif AUTONOME (<strong><em>[.app]</em></strong> sur macOS, <strong><em>[.exe]</em></strong> + ses bibliothèques sur Windows, un binaire <em>[ELF]</em> sur Linux), dans <strong><em>[build/&lt;cible&gt;/]</em></strong> - un exécutable qui, contrairement au build web, ne s&#x27;exécute dans AUCUN navigateur, sur AUCUNE <em>[WebView]</em> : c&#x27;est du code natif tournant directement sur le système d&#x27;exploitation, avec sa propre fenêtre, sa propre barre de titre, gérées par <em>[Flutter]</em> lui-même.</p>
+<p>Cette cible n&#x27;a besoin d&#x27;AUCUN réglage réseau particulier : une application de bureau tourne sur la même machine que l&#x27;utilisateur et atteint <strong><em>[http://localhost:8080]</em></strong> exactement comme le ferait n&#x27;importe quel autre programme installé sur cette machine (le champ « URL du serveur » de l&#x27;écran de connexion permet, comme pour les autres cibles, de pointer vers un serveur distant si besoin).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>PS C:\Data\st-2026\dev\flutter-nestjs-sept-2026\rdvmedecins_flutter_client&gt; flutter devices    
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>Found 4 connected devices:
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>  sdk gphone16k x86 64 (mobile) • emulator-5554 • android-x64    • Android 17 (API 37) (emulator)
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>  Windows (desktop)             • windows       • windows-x64    • Microsoft Windows [version
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>  10.0.26200.9457]
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>  Chrome (web)                  • chrome        • web-javascript • Google Chrome 153.0.8010.48
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>  Edge (web)                    • edge          • web-javascript • Microsoft Edge 153.0.4234.48
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>Run "flutter emulators" to list and start any available device emulators.
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>If you expected another device to be detected, please run "flutter doctor" to diagnose potential issues. You
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>may also try increasing the time to wait for connected devices with the "--device-timeout" flag. Visit
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>https://flutter.dev/setup/ for troubleshooting tips.
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>PS C:\Data\st-2026\dev\flutter-nestjs-sept-2026\rdvmedecins_flutter_client&gt; flutter run -d windows
+</code></pre></div></td></tr></table></div>
 <p>Cela produit le résultat suivant :</p>
 <p><img src="images/1000000000000527000003C6501389C7.png" width="396" height="290" style="width:10.47cm;height:7.669cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000527000003C6501389C7.png" /></p>
 <p>L’écran ci-dessus ne provient pas d’un navigateur mais d’une application windows. Pour que cela marche, il faut que certains outils soient disponibles :</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
-<span class="normal"><a href="#__codelineno-2-2">2</a></span>
-<span class="normal"><a href="#__codelineno-2-3">3</a></span>
-<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>[√] Visual Studio - develop Windows apps (Visual Studio Build Tools 2026 18.9.0) [221ms]
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a>    • Visual Studio at C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a>    • Visual Studio Build Tools 2026 version 18.9.12105.275
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a>    • Windows 10 SDK version 10.0.26100.0
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>[√] Visual Studio - develop Windows apps (Visual Studio Build Tools 2026 18.9.0) [221ms]
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>    • Visual Studio at C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>    • Visual Studio Build Tools 2026 version 18.9.12105.275
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>    • Windows 10 SDK version 10.0.26100.0
 </code></pre></div></td></tr></table></div>
 <ul>
   <li>ligne 2, il faut que <a href="https://visualstudio.microsoft.com/fr/vs/community/">Visual Studio</a> soit installé ;
@@ -731,23 +742,30 @@
 </ul>
 
 <p>Pour avoir une bonne vue de ce qui manque à votre projet Flutter, tapez la commande :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>flutter doctor -v
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>flutter doctor -v
 </code></pre></div>
 <h2 id="64-cible-emulateurs">6.4. <span style="color: #2e74b5">Cible émulateurs</span></h2>
 <p>L’application Flutter a été testée sur un émulateur Android :</p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content">PS C:\Data\st-2026\dev\flutter-nestjs-sept-2026\rdvmedecins_flutter_client&gt; <span style="background-color:#fff5ce">flutter devices</span>       </span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">Found 4 connected devices:</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">  sdk gphone16k x86 64 (mobile) • <span style="background-color:#fff5ce">emulator-5554</span> • android-x64    • Android 17 (API 37) (emulator)</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">  Windows (desktop)             • windows       • windows-x64    • Microsoft Windows [version</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">  10.0.26200.9457]</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">  Chrome (web)                  • chrome        • web-javascript • Google Chrome 153.0.8010.48</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">  Edge (web)                    • edge          • web-javascript • Microsoft Edge 153.0.4234.48</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">PS C:\Data\st-2026\dev\flutter-nestjs-sept-2026\rdvmedecins_flutter_client&gt; <span style="background-color:#fff5ce">flutter run -d emulator-554</span></span></span>
-</code></pre></div>
-
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>PS C:\Data\st-2026\dev\flutter-nestjs-sept-2026\rdvmedecins_flutter_client&gt; flutter devices       
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>Found 4 connected devices:
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>  sdk gphone16k x86 64 (mobile) • emulator-5554 • android-x64    • Android 17 (API 37) (emulator)
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>  Windows (desktop)             • windows       • windows-x64    • Microsoft Windows [version
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>  10.0.26200.9457]
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>  Chrome (web)                  • chrome        • web-javascript • Google Chrome 153.0.8010.48
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>  Edge (web)                    • edge          • web-javascript • Microsoft Edge 153.0.4234.48
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>...
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>PS C:\Data\st-2026\dev\flutter-nestjs-sept-2026\rdvmedecins_flutter_client&gt; flutter run -d emulator-554
+</code></pre></div></td></tr></table></div>
 <p>Le résultat dans l’émulateur :</p>
 <p><img src="images/100000000000040300000483354A3B5D.png" width="308" height="347" style="width:8.149cm;height:9.17cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000040300000483354A3B5D.png" /></p>
 <ul>
@@ -763,70 +781,70 @@
 <h2 id="65-cible-mobile">6.5. <span style="color: #2e74b5">Cible mobile</span></h2>
 <p><strong>Note</strong> : le réviseur n’a pas testé cette section.</p>
 <p>La cible qui demande le plus d&#x27;attention, à cause d&#x27;un détail propre au réseau des émulateurs/simulateurs.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
-<span class="normal"><a href="#__codelineno-4-2">2</a></span>
-<span class="normal"><a href="#__codelineno-4-3">3</a></span>
-<span class="normal"><a href="#__codelineno-4-4">4</a></span>
-<span class="normal"><a href="#__codelineno-4-5">5</a></span>
-<span class="normal"><a href="#__codelineno-4-6">6</a></span>
-<span class="normal"><a href="#__codelineno-4-7">7</a></span>
-<span class="normal"><a href="#__codelineno-4-8">8</a></span>
-<span class="normal"><a href="#__codelineno-4-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>flutter emulators                   # liste les émulateurs Android configurés
-<a id="__codelineno-4-2" name="__codelineno-4-2"></a>flutter emulators --launch &lt;id&gt;     # démarre un émulateur Android
-<a id="__codelineno-4-3" name="__codelineno-4-3"></a>open -a Simulator                   # démarre un simulateur iOS (macOS uniquement)
-<a id="__codelineno-4-4" name="__codelineno-4-4"></a>
-<a id="__codelineno-4-5" name="__codelineno-4-5"></a>flutter run -d &lt;id-emulateur-ou-appareil&gt;
-<a id="__codelineno-4-6" name="__codelineno-4-6"></a>
-<a id="__codelineno-4-7" name="__codelineno-4-7"></a>flutter build apk                   # build Android (.apk), ou :
-<a id="__codelineno-4-8" name="__codelineno-4-8"></a>flutter build appbundle             # build Android pour le Play Store (.aab)
-<a id="__codelineno-4-9" name="__codelineno-4-9"></a>flutter build ios                   # build iOS - nécessite macOS + Xcode + un compte développeur Apple pour un appareil physique
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span>
+<span class="normal"><a href="#__codelineno-6-8">8</a></span>
+<span class="normal"><a href="#__codelineno-6-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">flutter</span> <span class="n">emulators</span>                   <span class="c"># liste les émulateurs Android configurés</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">flutter</span> <span class="n">emulators</span> <span class="p">-</span><span class="n">-launch</span> <span class="p">&lt;</span><span class="n">id</span><span class="p">&gt;</span>     <span class="c"># démarre un émulateur Android</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="n">open</span> <span class="n">-a</span> <span class="n">Simulator</span>                   <span class="c"># démarre un simulateur iOS (macOS uniquement)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="n">flutter</span> <span class="n">run</span> <span class="n">-d</span> <span class="p">&lt;</span><span class="n">id-emulateur-ou-appareil</span><span class="p">&gt;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="n">flutter</span> <span class="n">build</span> <span class="n">apk</span>                   <span class="c"># build Android (.apk), ou :</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="n">flutter</span> <span class="n">build</span> <span class="n">appbundle</span>             <span class="c"># build Android pour le Play Store (.aab)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="n">flutter</span> <span class="n">build</span> <span class="n">ios</span>                   <span class="c"># build iOS - nécessite macOS + Xcode + un compte développeur Apple pour un appareil physique</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="651-le-piege-reseau-propre-au-mobile-localhost-ne-designe-plus-le-pc-de-developpement">6.5.1. <span style="color: #1f4d78">Le piège réseau propre au mobile : localhost ne désigne plus le PC de développement</span></h3>
-<p>C&#x27;est LE détail à connaître pour cette cible, sans rapport avec <em><mark style="background-color: #fff5ce">[Flutter]</mark></em> lui-même : <strong><em><mark style="background-color: #fff5ce">[localhost]</mark></em></strong> (ou <strong><em><mark style="background-color: #fff5ce">[127.0.0.1]</mark></em></strong>), dans le champ « URL du serveur » de l&#x27;écran de connexion, désigne TOUJOURS la machine qui exécute le code - or un émulateur/simulateur mobile est une machine VIRTUELLE DISTINCTE de la machine de développement où tourne le serveur <em><mark style="background-color: #fff5ce">[NestJS]</mark></em>, même si les deux semblent « être sur le même ordinateur ».</p>
+<p>C&#x27;est LE détail à connaître pour cette cible, sans rapport avec <em>[Flutter]</em> lui-même : <strong><em>[localhost]</em></strong> (ou <strong><em>[127.0.0.1]</em></strong>), dans le champ « URL du serveur » de l&#x27;écran de connexion, désigne TOUJOURS la machine qui exécute le code - or un émulateur/simulateur mobile est une machine VIRTUELLE DISTINCTE de la machine de développement où tourne le serveur <em>[NestJS]</em>, même si les deux semblent « être sur le même ordinateur ».</p>
 <ul>
-  <li>Émulateur <i><mark style="background-color: #fff5ce">[Android]</mark></i> (créé par <i><mark style="background-color: #fff5ce">[Android Studio]</mark></i>) : utiliser <i><b><mark style="background-color: #fff5ce">[http://10.0.2.2:8080]</mark></b></i> — une adresse spéciale, propre à l&#x27;émulateur <i><mark style="background-color: #fff5ce">[Android]</mark></i> officiel, qui redirige automatiquement vers <i><b><mark style="background-color: #fff5ce">[localhost]</mark></b></i> de la machine hôte (le PC de développement).
+  <li>Émulateur <i>[Android]</i> (créé par <i>[Android Studio]</i>) : utiliser <i><b>[http://10.0.2.2:8080]</b></i> — une adresse spéciale, propre à l&#x27;émulateur <i>[Android]</i> officiel, qui redirige automatiquement vers <i><b>[localhost]</b></i> de la machine hôte (le PC de développement).
   </li>
-  <li>Simulateur <i><mark style="background-color: #fff5ce">[iOS]</mark></i> (macOS uniquement) : <i><b><mark style="background-color: #fff5ce">[http://localhost:8080]</mark></b></i> fonctionne directement, le simulateur <i><mark style="background-color: #fff5ce">[iOS]</mark></i> partageant le réseau de la machine hôte (contrairement à l&#x27;émulateur <i><mark style="background-color: #fff5ce">[Android]</mark></i>).
+  <li>Simulateur <i>[iOS]</i> (macOS uniquement) : <i><b>[http://localhost:8080]</b></i> fonctionne directement, le simulateur <i>[iOS]</i> partageant le réseau de la machine hôte (contrairement à l&#x27;émulateur <i>[Android]</i>).
   </li>
-  <li>Appareil physique (<i><mark style="background-color: #fff5ce">[Android]</mark></i> ou <i><mark style="background-color: #fff5ce">[iOS]</mark></i>, connecté au même réseau Wi-Fi que le PC de développement) : utiliser l&#x27;adresse <i><mark style="background-color: #fff5ce">[IP]</mark></i> LOCALE de ce PC sur ce réseau (par exemple <i><b><mark style="background-color: #fff5ce">[http://192.168.1.42:8080]</mark></b></i>), jamais <i><b><mark style="background-color: #fff5ce">[localhost]</mark></b></i> ni <i><b><mark style="background-color: #fff5ce">[10.0.2.2]</mark></b></i>, qui désignent l&#x27;un et l&#x27;autre l&#x27;appareil mobile lui-même dans ce cas.
+  <li>Appareil physique (<i>[Android]</i> ou <i>[iOS]</i>, connecté au même réseau Wi-Fi que le PC de développement) : utiliser l&#x27;adresse <i>[IP]</i> LOCALE de ce PC sur ce réseau (par exemple <i><b>[http://192.168.1.42:8080]</b></i>), jamais <i><b>[localhost]</b></i> ni <i><b>[10.0.2.2]</b></i>, qui désignent l&#x27;un et l&#x27;autre l&#x27;appareil mobile lui-même dans ce cas.
   </li>
 </ul>
 
 <h3 id="652-deux-restrictions-supplementaires-propres-au-mobile">6.5.2. <span style="color: #1f4d78">Deux restrictions supplémentaires, propres au mobile</span></h3>
 <ul>
-  <li><i><mark style="background-color: #fff5ce">[Android]</mark></i> (depuis l&#x27;API 28) bloque par défaut tout trafic <i><mark style="background-color: #fff5ce">[HTTP]</mark></i> EN CLAIR (non chiffré <i><b><mark style="background-color: #fff5ce">[https://]</mark></b></i>) — puisque le serveur <i><mark style="background-color: #fff5ce">[NestJS]</mark></i> de ce cours écoute en <i><mark style="background-color: #fff5ce">[HTTP]</mark></i> simple, une application <i><mark style="background-color: #fff5ce">[Android]</mark></i> PRÊTE POUR LA PRODUCTION devrait déclarer une exception explicite (<i><b><mark style="background-color: #fff5ce">[android:usesCleartextTraffic=&quot;true&quot;]</mark></b></i> dans le manifeste <i><mark style="background-color: #fff5ce">[Android]</mark></i> généré, ou une configuration de sécurité réseau plus fine) — un réglage de configuration native, dans <i><b><mark style="background-color: #fff5ce">[android/]</mark></b></i>, hors du code <i><mark style="background-color: #fff5ce">[Dart]</mark></i> présenté dans ce document.
+  <li><i>[Android]</i> (depuis l&#x27;API 28) bloque par défaut tout trafic <i>[HTTP]</i> EN CLAIR (non chiffré <i><b>[https://]</b></i>) — puisque le serveur <i>[NestJS]</i> de ce cours écoute en <i>[HTTP]</i> simple, une application <i>[Android]</i> PRÊTE POUR LA PRODUCTION devrait déclarer une exception explicite (<i><b>[android:usesCleartextTraffic=&quot;true&quot;]</b></i> dans le manifeste <i>[Android]</i> généré, ou une configuration de sécurité réseau plus fine) — un réglage de configuration native, dans <i><b>[android/]</b></i>, hors du code <i>[Dart]</i> présenté dans ce document.
   </li>
-  <li><i><mark style="background-color: #fff5ce">[iOS]</mark></i> applique une politique comparable, <i><b><mark style="background-color: #fff5ce">[App Transport Security]</mark></b></i> (<i><mark style="background-color: #fff5ce">[ATS]</mark></i>), qui bloque également le <i><mark style="background-color: #fff5ce">[HTTP]</mark></i> en clair par défaut — une exception équivalente se déclare dans <i><b><mark style="background-color: #fff5ce">[ios/Runner/Info.plist]</mark></b></i> (<i><b><mark style="background-color: #fff5ce">[NSAppTransportSecurity]</mark></b></i>, <i><b><mark style="background-color: #fff5ce">[NSAllowsArbitraryLoads]</mark></b></i> ou, plus précisément, une exception ciblée sur le seul domaine du serveur de développement).
+  <li><i>[iOS]</i> applique une politique comparable, <i><b>[App Transport Security]</b></i> (<i>[ATS]</i>), qui bloque également le <i>[HTTP]</i> en clair par défaut — une exception équivalente se déclare dans <i><b>[ios/Runner/Info.plist]</b></i> (<i><b>[NSAppTransportSecurity]</b></i>, <i><b>[NSAllowsArbitraryLoads]</b></i> ou, plus précisément, une exception ciblée sur le seul domaine du serveur de développement).
   </li>
 </ul>
 
-<p>Ces deux réglages ne concernent QUE le développement/la démonstration avec un serveur <em><mark style="background-color: #fff5ce">[HTTP]</mark></em> non chiffré, comme celui de ce cours - une mise en production réelle exposerait plutôt le serveur <em><mark style="background-color: #fff5ce">[NestJS]</mark></em> lui-même en <strong><em><mark style="background-color: #fff5ce">[https://]</mark></em></strong> (par exemple derrière un <em><mark style="background-color: #fff5ce">[reverse proxy]</mark></em> comme <em><mark style="background-color: #fff5ce">[Nginx]</mark></em>), ce qui rendrait ces deux exceptions inutiles.</p>
+<p>Ces deux réglages ne concernent QUE le développement/la démonstration avec un serveur <em>[HTTP]</em> non chiffré, comme celui de ce cours - une mise en production réelle exposerait plutôt le serveur <em>[NestJS]</em> lui-même en <strong><em>[https://]</em></strong> (par exemple derrière un <em>[reverse proxy]</em> comme <em>[Nginx]</em>), ce qui rendrait ces deux exceptions inutiles.</p>
 <h3 id="653-un-ecran-plus-etroit-le-piege-de-la-mise-en-page">6.5.3. <span style="color: #1f4d78">Un écran plus étroit : le piège de la mise en page</span></h3>
-<p>Une dernière différence propre au mobile n&#x27;a rien à voir avec le réseau : un téléphone en portrait ne fait qu&#x27;environ 360 pixels de large (en pixels logiques de <em><mark style="background-color: #fff5ce">[Flutter]</mark></em>), contre plusieurs centaines de plus dans une fenêtre de navigateur ou de bureau. Un écran conçu sur un grand écran peut donc devenir inutilisable sur un téléphone : c&#x27;est ce qui est arrivé à la première version du client de ce document, testée sur un émulateur <em><mark style="background-color: #fff5ce">[Android]</mark></em>. Le sélecteur médecin/jour/bouton (<em><mark style="background-color: #fff5ce">[doctor_day_picker.dart]</mark></em>) alignait trois champs dans une seule <strong><em><mark style="background-color: #fff5ce">[Row]</mark></em></strong> et la barre de titre (<em><mark style="background-color: #fff5ce">[app.dart]</mark></em>) affichait tout à la fois : il fallait passer l&#x27;émulateur en paysage pour tout voir. Le chapitre 4 montre la correction. Deux règles en découlent :</p>
+<p>Une dernière différence propre au mobile n&#x27;a rien à voir avec le réseau : un téléphone en portrait ne fait qu&#x27;environ 360 pixels de large (en pixels logiques de <em>[Flutter]</em>), contre plusieurs centaines de plus dans une fenêtre de navigateur ou de bureau. Un écran conçu sur un grand écran peut donc devenir inutilisable sur un téléphone : c&#x27;est ce qui est arrivé à la première version du client de ce document, testée sur un émulateur <em>[Android]</em>. Le sélecteur médecin/jour/bouton (<em>[doctor_day_picker.dart]</em>) alignait trois champs dans une seule <strong><em>[Row]</em></strong> et la barre de titre (<em>[app.dart]</em>) affichait tout à la fois : il fallait passer l&#x27;émulateur en paysage pour tout voir. Le chapitre 4 montre la correction. Deux règles en découlent :</p>
 <ul>
-  <li>Ne jamais supposer une largeur. Pour choisir une disposition, on interroge la largeur réellement disponible, soit à un endroit précis de l&#x27;arbre avec <i><b><mark style="background-color: #fff5ce">[LayoutBuilder]</mark></b></i> (<i><b><mark style="background-color: #fff5ce">[contraintes.maxWidth]</mark></b></i>), soit pour l&#x27;écran entier avec <i><b><mark style="background-color: #fff5ce">[MediaQuery.sizeOf(context).width]</mark></b></i> - puis on choisit <i><b><mark style="background-color: #fff5ce">[Row]</mark></b></i> (écran large) ou <i><b><mark style="background-color: #fff5ce">[Column]</mark></b></i> (écran étroit).
+  <li>Ne jamais supposer une largeur. Pour choisir une disposition, on interroge la largeur réellement disponible, soit à un endroit précis de l&#x27;arbre avec <i><b>[LayoutBuilder]</b></i> (<i><b>[contraintes.maxWidth]</b></i>), soit pour l&#x27;écran entier avec <i><b>[MediaQuery.sizeOf(context).width]</b></i> - puis on choisit <i><b>[Row]</b></i> (écran large) ou <i><b>[Column]</b></i> (écran étroit).
   </li>
-  <li>Tester tôt sur un écran étroit : l&#x27;émulateur en portrait, ou une fenêtre <i><mark style="background-color: #fff5ce">[Chrome]</mark></i> que l&#x27;on rétrécit. En mode debug, <i><mark style="background-color: #fff5ce">[Flutter]</mark></i> signale un contenu trop large par un bandeau jaune et noir « RIGHT OVERFLOWED BY … PIXELS » dans l&#x27;application, et par un message dans la console.
+  <li>Tester tôt sur un écran étroit : l&#x27;émulateur en portrait, ou une fenêtre <i>[Chrome]</i> que l&#x27;on rétrécit. En mode debug, <i>[Flutter]</i> signale un contenu trop large par un bandeau jaune et noir « RIGHT OVERFLOWED BY … PIXELS » dans l&#x27;application, et par un message dans la console.
   </li>
 </ul>
 
-<p>Cela ne contredit pas la remarque qui suit : l&#x27;adaptation se fait en fonction de la TAILLE de l&#x27;écran, jamais de la plateforme - aucun <strong><em><mark style="background-color: #fff5ce">[if (kIsWeb)]</mark></em></strong> n&#x27;apparaît. Une fenêtre de navigateur ou de bureau que l&#x27;on rétrécit déclenche exactement la même mise en page « étroite » qu&#x27;un téléphone.</p>
+<p>Cela ne contredit pas la remarque qui suit : l&#x27;adaptation se fait en fonction de la TAILLE de l&#x27;écran, jamais de la plateforme - aucun <strong><em>[if (kIsWeb)]</em></strong> n&#x27;apparaît. Une fenêtre de navigateur ou de bureau que l&#x27;on rétrécit déclenche exactement la même mise en page « étroite » qu&#x27;un téléphone.</p>
 <h2 id="66-tableau-recapitulatif">6.6. <span style="color: #2e74b5">Tableau récapitulatif</span></h2>
 <ul>
-  <li><i><mark style="background-color: #fff5ce">[web]</mark></i> — <i><b><mark style="background-color: #fff5ce">[flutter run -d chrome]</mark></b></i> / <i><b><mark style="background-color: #fff5ce">[flutter build web]</mark></b></i> — compilation vers <i><mark style="background-color: #fff5ce">[JavaScript]</mark></i>/<i><mark style="background-color: #fff5ce">[WebAssembly]</mark></i>, exécuté par un navigateur — URL serveur : <i><b><mark style="background-color: #fff5ce">[localhost]</mark></b></i> (même machine).
+  <li><i>[web]</i> — <i><b>[flutter run -d chrome]</b></i> / <i><b>[flutter build web]</b></i> — compilation vers <i>[JavaScript]</i>/<i>[WebAssembly]</i>, exécuté par un navigateur — URL serveur : <i><b>[localhost]</b></i> (même machine).
   </li>
-  <li><i><mark style="background-color: #fff5ce">[bureau]</mark></i> (macOS/Windows/Linux) — <i><b><mark style="background-color: #fff5ce">[flutter run -d &lt;os&gt;]</mark></b></i> / <i><b><mark style="background-color: #fff5ce">[flutter build &lt;os&gt;]</mark></b></i> — compilation <i><mark style="background-color: #fff5ce">[AOT]</mark></i> native, exécutable autonome — URL serveur : <i><b><mark style="background-color: #fff5ce">[localhost]</mark></b></i> (même machine).
+  <li><i>[bureau]</i> (macOS/Windows/Linux) — <i><b>[flutter run -d &lt;os&gt;]</b></i> / <i><b>[flutter build &lt;os&gt;]</b></i> — compilation <i>[AOT]</i> native, exécutable autonome — URL serveur : <i><b>[localhost]</b></i> (même machine).
   </li>
-  <li><i><mark style="background-color: #fff5ce">[mobile]</mark></i> (émulateur Android) — <i><b><mark style="background-color: #fff5ce">[flutter run]</mark></b></i> — compilation <i><mark style="background-color: #fff5ce">[AOT]</mark></i> native — URL serveur : <i><b><mark style="background-color: #fff5ce">[10.0.2.2]</mark></b></i> (adresse spéciale de l&#x27;émulateur).
+  <li><i>[mobile]</i> (émulateur Android) — <i><b>[flutter run]</b></i> — compilation <i>[AOT]</i> native — URL serveur : <i><b>[10.0.2.2]</b></i> (adresse spéciale de l&#x27;émulateur).
   </li>
-  <li><i><mark style="background-color: #fff5ce">[mobile]</mark></i> (simulateur iOS) — <i><b><mark style="background-color: #fff5ce">[flutter run]</mark></b></i> — compilation <i><mark style="background-color: #fff5ce">[AOT]</mark></i> native — URL serveur : <i><b><mark style="background-color: #fff5ce">[localhost]</mark></b></i> (réseau partagé avec l&#x27;hôte).
+  <li><i>[mobile]</i> (simulateur iOS) — <i><b>[flutter run]</b></i> — compilation <i>[AOT]</i> native — URL serveur : <i><b>[localhost]</b></i> (réseau partagé avec l&#x27;hôte).
   </li>
-  <li><i><mark style="background-color: #fff5ce">[mobile]</mark></i> (appareil physique) — <i><b><mark style="background-color: #fff5ce">[flutter run]</mark></b></i> — compilation <i><mark style="background-color: #fff5ce">[AOT]</mark></i> native — URL serveur : adresse <i><mark style="background-color: #fff5ce">[IP]</mark></i> locale du PC de développement, + exception <i><mark style="background-color: #fff5ce">[cleartext]</mark></i>/<i><mark style="background-color: #fff5ce">[ATS]</mark></i>.
+  <li><i>[mobile]</i> (appareil physique) — <i><b>[flutter run]</b></i> — compilation <i>[AOT]</i> native — URL serveur : adresse <i>[IP]</i> locale du PC de développement, + exception <i>[cleartext]</i>/<i>[ATS]</i>.
   </li>
 </ul>
 
 <h2 id="67-ce-qui-ne-change-pas-dans-le-code-dart">6.7. <span style="color: #2e74b5">Ce qui NE change PAS dans le code Dart</span></h2>
-<p>Pour clore ce chapitre, il vaut la peine d&#x27;insister sur ce qui n&#x27;a PAS eu besoin d&#x27;être écrit ni adapté pour couvrir ces trois familles de cibles : aucune condition <strong><em><mark style="background-color: #fff5ce">[if (kIsWeb) { ... } else { ... }]</mark></em></strong> n&#x27;apparaît au chapitre 4, aucun fichier <strong><em><mark style="background-color: #fff5ce">[_mobile.dart]</mark></em></strong>/<strong><em><mark style="background-color: #fff5ce">[_web.dart]</mark></em></strong> séparé, aucune bibliothèque d&#x27;abstraction supplémentaire. Les quelques choix déjà faits au chapitre 4 suffisent, à eux seuls, à rendre ce code portable sur les 3 familles de cibles : <strong><em><mark style="background-color: #fff5ce">[shared_preferences]</mark></em></strong> (plutôt que <strong><em><mark style="background-color: #fff5ce">[localStorage]</mark></em></strong>, propre au navigateur) pour la persistance, <strong><em><mark style="background-color: #fff5ce">[rootBundle.loadString(...)]</mark></em></strong> (plutôt qu&#x27;un <strong><em><mark style="background-color: #fff5ce">[fetch]</mark></em></strong> vers un serveur web) pour les dictionnaires de traduction embarqués, et le package <strong><em><mark style="background-color: #fff5ce">[http]</mark></em></strong> (plutôt qu&#x27;une API spécifique au navigateur) pour le réseau. C&#x27;est très exactement ce que promettait l&#x27;introduction de ce document : <strong><em><mark style="background-color: #fff5ce">[un seul code Flutter suffit pour créer une application mobile, une application de bureau et une application web]</mark></em></strong>.</p>
+<p>Pour clore ce chapitre, il vaut la peine d&#x27;insister sur ce qui n&#x27;a PAS eu besoin d&#x27;être écrit ni adapté pour couvrir ces trois familles de cibles : aucune condition <strong><em>[if (kIsWeb) { ... } else { ... }]</em></strong> n&#x27;apparaît au chapitre 4, aucun fichier <strong><em>[_mobile.dart]</em></strong>/<strong><em>[_web.dart]</em></strong> séparé, aucune bibliothèque d&#x27;abstraction supplémentaire. Les quelques choix déjà faits au chapitre 4 suffisent, à eux seuls, à rendre ce code portable sur les 3 familles de cibles : <strong><em>[shared_preferences]</em></strong> (plutôt que <strong><em>[localStorage]</em></strong>, propre au navigateur) pour la persistance, <strong><em>[rootBundle.loadString(...)]</em></strong> (plutôt qu&#x27;un <strong><em>[fetch]</em></strong> vers un serveur web) pour les dictionnaires de traduction embarqués, et le package <strong><em>[http]</em></strong> (plutôt qu&#x27;une API spécifique au navigateur) pour le réseau. C&#x27;est très exactement ce que promettait l&#x27;introduction de ce document : <strong><em>[un seul code Flutter suffit pour créer une application mobile, une application de bureau et une application web]</em></strong>.</p>
 
 
 
